@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Klasifikasi Video Sepak Bola</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      color: #495057;
+    }
+
+    .jumbotron {
+      background-color: #007bff;
+      color: #ffffff;
+      padding: 20px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      color: #ffffff;
+    }
+
+    .prediction-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .prediction-container img {
+      margin-right: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .prediction-text {
+      text-align: left; /* Sesuaikan sesuai kebutuhan Anda */
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="jumbotron">Klasifikasi Video Sepak Bola</h1>
+
+  <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="my_video">Upload Your Video :</label>
+      <div class="col-sm-10">
+        <input type="file" class="form-control" id="my_video" name="my_video" accept="video/*">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+  </form>
+
+  {% if prediction %}
+    <div class="prediction-container">
+      <img src="{{ url_for('static', filename=gif_path)}}" width="400" height="300">
+      <div style="margin-left: 20px;">
+        <h3>Prediksi: <i>{{ prediction }}</i></h3>
+        <!-- <br> -->
+        <h3>Tingkat Keyakinan: <i>{{ tingkat_keyakinan }}</i></h3>
+      </div>
+    </div>
+  {% endif %}
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
